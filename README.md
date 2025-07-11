@@ -9,3 +9,8 @@ GET
 curl -X GET http://localhost:8080/products
 
 curl -X GET http://localhost:8080/products/1
+
+PUT
+curl -X PUT http://localhost:8080/products/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Laptop Gaming", "price": 18500000, "stock": 5}'

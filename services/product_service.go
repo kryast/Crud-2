@@ -9,6 +9,7 @@ type ProductService interface {
 	CreateProduct(product *models.Product) error
 	GetProducts() ([]models.Product, error)
 	GetProductByID(id uint) (models.Product, error)
+	UpdateProduct(product *models.Product) error
 }
 
 type productService struct {
@@ -29,4 +30,8 @@ func (s *productService) GetProducts() ([]models.Product, error) {
 
 func (s *productService) GetProductByID(id uint) (models.Product, error) {
 	return s.repo.FindByID(id)
+}
+
+func (s *productService) UpdateProduct(product *models.Product) error {
+	return s.repo.Update(product)
 }

@@ -9,6 +9,7 @@ type ProductRepository interface {
 	Create(product *models.Product) error
 	FindAll() ([]models.Product, error)
 	FindByID(id uint) (models.Product, error)
+	Update(product *models.Product) error
 }
 
 type productRepository struct {
@@ -31,4 +32,8 @@ func (r *productRepository) FindAll() ([]models.Product, error) {
 func (r *productRepository) FindByID(id uint) (models.Product, error) {
 	var product models.Product
 	return product, r.db.First(&product, id).Error
+}
+
+func (r *productRepository) Update(product *models.Product) error {
+	return r.db.Save(product).Error
 }

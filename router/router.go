@@ -11,6 +11,7 @@ func SetupRouter(productHandler *handlers.ProductHandler) *gin.Engine {
 	r.POST("/products", productHandler.CreateProduct)
 	r.GET("/products", productHandler.GetProducts)
 	r.GET("/products/:id", productHandler.GetProduct)
+	r.PUT("/products/:id", productHandler.UpdateProduct)
 
 	return r
 }

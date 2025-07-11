@@ -44,3 +44,18 @@ func (h *ProductHandler) GetProduct(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, product)
 }
+
+func (h *ProductHandler) UpdateProduct(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	var product models.Product
+	if err := c.ShouldBindJSON(&product); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	product.ID = uint(id)
+	if err := h.service.UpdateProduct(&product); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Update failed"})
+		return
+	}
+	c.JSON(http.StatusOK, product)
+}
