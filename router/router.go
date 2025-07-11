@@ -12,6 +12,7 @@ func SetupRouter(productHandler *handlers.ProductHandler) *gin.Engine {
 	r.GET("/products", productHandler.GetProducts)
 	r.GET("/products/:id", productHandler.GetProduct)
 	r.PUT("/products/:id", productHandler.UpdateProduct)
+	r.DELETE("/products/:id", productHandler.DeleteProduct)
 
 	return r
 }

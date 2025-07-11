@@ -10,6 +10,7 @@ type ProductService interface {
 	GetProducts() ([]models.Product, error)
 	GetProductByID(id uint) (models.Product, error)
 	UpdateProduct(product *models.Product) error
+	DeleteProduct(id uint) error
 }
 
 type productService struct {
@@ -34,4 +35,8 @@ func (s *productService) GetProductByID(id uint) (models.Product, error) {
 
 func (s *productService) UpdateProduct(product *models.Product) error {
 	return s.repo.Update(product)
+}
+
+func (s *productService) DeleteProduct(id uint) error {
+	return s.repo.Delete(id)
 }

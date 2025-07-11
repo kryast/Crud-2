@@ -14,3 +14,6 @@ PUT
 curl -X PUT http://localhost:8080/products/1 \
   -H "Content-Type: application/json" \
   -d '{"name": "Laptop Gaming", "price": 18500000, "stock": 5}'
+
+DELETE
+curl -X DELETE http://localhost:8080/products/1

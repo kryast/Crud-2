@@ -59,3 +59,12 @@ func (h *ProductHandler) UpdateProduct(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, product)
 }
+
+func (h *ProductHandler) DeleteProduct(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	if err := h.service.DeleteProduct(uint(id)); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Delete failed"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Product deleted"})
+}
