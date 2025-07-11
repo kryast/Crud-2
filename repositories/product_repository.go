@@ -7,6 +7,8 @@ import (
 
 type ProductRepository interface {
 	Create(product *models.Product) error
+	FindAll() ([]models.Product, error)
+	FindByID(id uint) (models.Product, error)
 }
 
 type productRepository struct {
@@ -19,4 +21,14 @@ func NewProductRepository(db *gorm.DB) ProductRepository {
 
 func (r *productRepository) Create(product *models.Product) error {
 	return r.db.Create(product).Error
+}
+
+func (r *productRepository) FindAll() ([]models.Product, error) {
+	var products []models.Product
+	return products, r.db.Find(&products).Error
+}
+
+func (r *productRepository) FindByID(id uint) (models.Product, error) {
+	var product models.Product
+	return product, r.db.First(&product, id).Error
 }
